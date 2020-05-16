@@ -184,7 +184,7 @@ public class AdvertisementMain implements Commands {
         }
     }
 
-    private static void exportItems() {
+    private static synchronized void exportItems() {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
@@ -219,6 +219,13 @@ public class AdvertisementMain implements Commands {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    while (dataStorage.isEmptyItem()) {
+                        try {
+                            wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
         };
@@ -234,7 +241,7 @@ public class AdvertisementMain implements Commands {
     }
 
 
-    private static void importItems() {
+    private static synchronized void importItems() {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
@@ -268,6 +275,8 @@ public class AdvertisementMain implements Commands {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                notify();
             }
         };
         Thread t = new Thread(runnable);
@@ -320,6 +329,7 @@ public class AdvertisementMain implements Commands {
             System.out.println("Item was successfully added");
         } catch (Exception e) {
             System.out.println("Wrong Data!");
+
         }
     }
 }
