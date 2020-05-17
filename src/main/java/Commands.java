@@ -3,7 +3,7 @@ public interface Commands {
     int LOGIN = 1;
     int REGISTER = 2;
     int IMPORT_USERS = 3;
-    int EXPORT_ITEMS = 4;
+
 
 
     int LOGOUT = 0;
@@ -16,14 +16,14 @@ public interface Commands {
     int DELETE_MY_ALL_ADS = 7;
     int DELETE_AD_BY_ID = 8;
     int IMPORT_ITEMS = 9;
-
+    int EXPORT_ITEMS = 10;
 
     static void printMainCommands() {
         System.out.println("Please input " + EXIT +" for EXIT");
         System.out.println("Please input " + LOGIN +" for LOGIN");
         System.out.println("Please input " + REGISTER +" for REGISTER");
         System.out.println("Please input " + IMPORT_USERS +" for IMORT USERS");
-        System.out.println("Please input " + EXPORT_ITEMS +" for EXPORT_ITEMS");
+
     }
 
     static void printUserCommands() {
@@ -37,6 +37,6 @@ public interface Commands {
         System.out.println("Please input " + DELETE_MY_ALL_ADS +" for DELETE_MY_ALL_ADS");
         System.out.println("Please input " + DELETE_AD_BY_ID +" for DELETE_AD_BY_ID");
         System.out.println("Please input " + IMPORT_ITEMS +" for IMPORT_ITEMS");
-
+        System.out.println("Please input " + EXPORT_ITEMS +" for EXPORT_ITEMS");
     }
 }

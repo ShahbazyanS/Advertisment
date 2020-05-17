@@ -1,11 +1,10 @@
 package storage;
 
-import util.FileUtil;
 import model.Category;
 import model.Item;
 import model.User;
+import util.FileUtil;
 
-import java.io.IOException;
 import java.util.*;
 
 public class DataStorage {
@@ -14,12 +13,12 @@ public class DataStorage {
     private Map<String, User> userMap = new HashMap<>();
     private List<Item> items = new ArrayList<>();
 
-    public void add(User user) throws IOException {
+    public void add(User user) {
         userMap.put(user.getPhoneNumber(), user);
         FileUtil.serializeUserMap(userMap);
     }
 
-    public void add(Item item) throws IOException {
+    public void add(Item item){
         item.setId(itemId++);
         items.add(item);
         FileUtil.serializeIterList(items);
@@ -38,9 +37,6 @@ public class DataStorage {
         return null;
     }
 
-    public List<Item> getItemByUser(User user){
-        return items;
-    }
 
     public void printItems() {
         for (Item item : items) {
@@ -87,7 +83,7 @@ public class DataStorage {
         }
     }
 
-    public void deleteItemsByUser(User user) throws IOException {
+    public void deleteItemsByUser(User user) {
         Iterator<Item> iterator = items.iterator();
         while (iterator.hasNext()) {
             Item next = iterator.next();
@@ -122,4 +118,7 @@ public class DataStorage {
         return items.isEmpty();
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
 }
